@@ -7,6 +7,6 @@ Route::get('/', function () {
 })->name('home');
 
 Route::group(['prefix'=> 'admin', 'namespace' => 'Admin'],function () {
-    Route::resource('categories','PostCategoryController')
-    ->names('admin.categories');
+    Route::resource('categories/posts','PostCategoryController')
+    ->names('admin.categories.posts');
 });
