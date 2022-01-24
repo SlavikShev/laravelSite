@@ -4,6 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::get('/categories', 'PostCategoryController@index');
+Route::resource('categories','Admin\PostCategoryController');
