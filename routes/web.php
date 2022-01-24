@@ -6,4 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::resource('categories','Admin\PostCategoryController');
+Route::group(['prefix'=> 'admin', 'namespace' => 'Admin'],function () {
+    Route::resource('categories','PostCategoryController')
+    ->names('admin.categories');
+});

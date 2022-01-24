@@ -41,7 +41,7 @@ class PostCategoryController extends Controller {
         ]);
         if ($result)
             return redirect()
-                ->route('categories.index')
+                ->route('admin.categories.index')
                 ->with(['success' => 'Категория успешно сохранена']);
         else
             return back()
