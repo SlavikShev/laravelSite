@@ -5,6 +5,6 @@
         @csrf
         <label for="title">title</label>
         <input type="text" name="title" id="title">
-        <input type="submit">
+        <input type="submit" value="Создать">
     </form>
 @endsection

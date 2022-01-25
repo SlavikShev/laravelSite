@@ -14,7 +14,8 @@ class PostCategoryController extends Controller {
      * @return View
      */
     public function index() {
-        $categories = PostCategory::all();
+        // todo select only title and parent_id
+        $categories = PostCategory::paginate(10);
         return view('categories.index',compact('categories'));
     }
 
