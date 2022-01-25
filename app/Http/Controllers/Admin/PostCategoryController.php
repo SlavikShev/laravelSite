@@ -42,7 +42,7 @@ class PostCategoryController extends Controller {
         ]);
         if ($result)
             return redirect()
-                ->route('admin.categories.posts.edit')
+                ->route('admin.categories.posts.edit', $result->id)
                 ->with(['success' => 'Категория успешно сохранена']);
         else
             return back()
@@ -76,10 +76,15 @@ class PostCategoryController extends Controller {
      *
      * @param \Illuminate\Http\Request $request
      * @param int $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        //
+        $data = $request->all();
+        $category = PostCategory::find($id);
+        $category->update(
+            ['title' => $data['title']],
+        );
+        return redirect()
+            ->route('admin.categories.posts.edit', $id);
     }
 
     /**

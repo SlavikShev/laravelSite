@@ -5,8 +5,10 @@
 @section('content')
     <form action="{{  route('admin.categories.posts.store')  }}" method="POST">
         @csrf
-        <label for="title">Заголовок</label>
-        <input type="text" name="title" id="title">
-        <input type="submit" value="Создать">
+        <div class="form-group">
+            <label for="title">Заголовок</label>
+            <input class="form-control" type="text" name="title" id="title">
+            <input type="submit" value="Создать">
+        </div>
     </form>
 @endsection
