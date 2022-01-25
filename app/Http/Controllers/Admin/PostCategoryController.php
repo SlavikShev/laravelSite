@@ -14,8 +14,8 @@ class PostCategoryController extends Controller {
      * @return View
      */
     public function index() {
-        // todo select only title and parent_id
-        $categories = PostCategory::paginate(10);
+        // todo select raw data and only title and parent_id
+        $categories = PostCategory::paginate(5);
         return view('categories.index',compact('categories'));
     }
 
@@ -42,7 +42,7 @@ class PostCategoryController extends Controller {
         ]);
         if ($result)
             return redirect()
-                ->route('admin.categories.posts.index')
+                ->route('admin.categories.posts.edit')
                 ->with(['success' => 'Категория успешно сохранена']);
         else
             return back()
@@ -64,10 +64,11 @@ class PostCategoryController extends Controller {
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function edit($id) {
-        //
+        $category = PostCategory::find($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**

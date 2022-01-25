@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
+@section('title','all categories')
+
 @section('content')
-    <a href="{{ route('admin.categories.posts.create') }}">create category</a>
+    <a class="btn btn-primary" href="{{ route('admin.categories.posts.create') }}">create category</a>
 
     <p>categories list</p>
 
@@ -15,7 +17,9 @@
         <tbody>
             @foreach($categories as $category)
                 <tr>
-                    <td>{{ $category->title }}</td>
+                    <td>
+                        <a href="{{ route('admin.categories.posts.edit', $category->id) }}">{{ $category->title }}</a>
+                    </td>
                     <td>{{ $category->parent_id }}</td>
                 </tr>
             @endforeach
