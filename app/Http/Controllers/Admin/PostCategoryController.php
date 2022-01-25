@@ -37,10 +37,10 @@ class PostCategoryController extends Controller {
      */
     public function store(Request $request) {
         $data = $request->all();
-        $title = $data['title'];
 
         $result = PostCategory::create([
-            'title'=>$title
+            'title' => $data['title'],
+            'parent_id' => $data['parent_id'],
         ]);
         if ($result)
             return redirect()
@@ -69,8 +69,9 @@ class PostCategoryController extends Controller {
      * @return View
      */
     public function edit($id) {
+        $parent_categories = PostCategory::select('id','title')->where('id','!=',"$id")->get();
         $category = PostCategory::find($id);
-        return view('categories.edit', compact('category'));
+        return view('categories.edit', compact('category','parent_categories'));
     }
 
     /**
@@ -82,9 +83,10 @@ class PostCategoryController extends Controller {
     public function update(Request $request, $id) {
         $data = $request->all();
         $category = PostCategory::find($id);
-        $category->update(
-            ['title' => $data['title']],
-        );
+        $category->update([
+            'parent_id' => $data['parent_id'],
+            'title' => $data['title'],
+        ]);
         return redirect()
             ->route('admin.categories.posts.edit', $id);
     }
