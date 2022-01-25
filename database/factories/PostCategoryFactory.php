@@ -14,7 +14,8 @@ class PostCategoryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => 'Главная',
+            'parent_id' => 0
         ];
     }
 }

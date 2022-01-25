@@ -14,8 +14,8 @@ class PostCategoryController extends Controller {
      * @return View
      */
     public function index() {
-        // todo select raw data and only title and parent_id
-        $categories = PostCategory::paginate(5);
+        // todo select raw data
+        $categories = PostCategory::select('id','title','parent_id')->where('id','!=',1)->paginate(5);
         return view('categories.index',compact('categories'));
     }
 
@@ -25,7 +25,9 @@ class PostCategoryController extends Controller {
      * @return View
      */
     public function create() {
-        return view('categories.create');
+        // todo set only id and title
+        $categories = PostCategory::all();
+        return view('categories.create', compact('categories'));
     }
 
     /**
