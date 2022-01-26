@@ -13,4 +13,12 @@ class PostCategory extends Model
       'title',
       'parent_id',
     ];
+
+    public function parentCategory () {
+        return $this->belongsTo(PostCategory::class,'parent_id','id');
+    }
+
+    public function getParentTitleAttribute () {
+        return $this->parentCategory->title;
+    }
 }

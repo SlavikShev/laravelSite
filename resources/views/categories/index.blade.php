@@ -20,7 +20,7 @@
                     <td>
                         <a href="{{ route('admin.categories.posts.edit', $category->id) }}">{{ $category->title }}</a>
                     </td>
-                    <td>{{ $category->parent_id }}</td>
+                    <td>{{ $category->parentTitle }}</td>
                 </tr>
             @endforeach
         </tbody>
