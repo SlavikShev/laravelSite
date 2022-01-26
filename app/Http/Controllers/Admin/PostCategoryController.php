@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostCategoryCreateRequest;
 use App\Http\Requests\PostCategoryUpdateRequest;
 use App\Models\PostCategory;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class PostCategoryController extends Controller {
@@ -52,10 +51,10 @@ class PostCategoryController extends Controller {
             return redirect()
                 ->route('admin.categories.posts.edit', $result->id)
                 ->with(['success' => 'Категория успешно сохранена']);
-        else
-            return back()
-                ->withErrors(['error'=>'Ошибка при сохранении'])
-                ->withInput();
+//        else
+//            return back()
+//                ->withErrors(['error'=>'Ошибка при сохранении'])
+//                ->withInput();
     }
 
     /**

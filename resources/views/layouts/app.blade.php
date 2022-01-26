@@ -20,7 +20,10 @@
 </head>
 <body>
     <header class="mb-2">
-        <a href="{{ route('admin.categories.posts.index') }}">posts categories</a>
+        <a href="{{ route('admin.categories.posts.index') }}">categories for posts</a>
+        <br>
+        <a href="{{ route('admin.posts.index') }}">posts</a>
+        <hr>
     </header>
     @yield('content')
 </body>
