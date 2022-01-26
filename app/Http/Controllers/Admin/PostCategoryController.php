@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostCategoryCreateRequest;
+use App\Http\Requests\PostCategoryUpdateRequest;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -35,16 +37,17 @@ class PostCategoryController extends Controller {
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param PostCategoryCreateRequest $request
      */
-    public function store(Request $request) {
-        // todo add validate
+    public function store(PostCategoryCreateRequest $request) {
+        // todo improve validation
         $data = $request->all();
 
         $result = PostCategory::create([
             'title' => $data['title'],
             'parent_id' => $data['parent_id'],
         ]);
+
         if ($result)
             return redirect()
                 ->route('admin.categories.posts.edit', $result->id)
@@ -83,15 +86,22 @@ class PostCategoryController extends Controller {
      * @param \Illuminate\Http\Request $request
      * @param int $id
      */
-    public function update(Request $request, $id) {
+    public function update(PostCategoryUpdateRequest $request, $id) {
+        // todo improve validation
         $data = $request->all();
         $category = PostCategory::find($id);
-        $category->update([
+        $update = $category->update([
             'parent_id' => $data['parent_id'],
             'title' => $data['title'],
         ]);
-        return redirect()
-            ->route('admin.categories.posts.edit', $id);
+        if ($update)
+            return redirect()
+                ->route('admin.categories.posts.edit', $id)
+                ->with(['success' => 'Успешно сохранена']);
+//        else
+//            return back()
+//                ->withErrors(['msg' => 'Ошибка сохранения'])
+//                ->withInput();
     }
 
     /**

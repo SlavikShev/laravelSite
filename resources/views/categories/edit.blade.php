@@ -17,7 +17,10 @@
                 @endforeach
             </select>
             <label for="title">Заголовок</label>
-            <input class="form-control" type="text" name="title" id="title" value="{{ $category->title }}">
+            <input class="form-control" type="text" name="title" id="title" value="{{ old('title', $category->title) }}">
+            @error('title')
+                <p class="text-danger">{{ $message }}</p>
+            @enderror
             <input type="submit" value="Сохранить">
         </div>
     </form>
