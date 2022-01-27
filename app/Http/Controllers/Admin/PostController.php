@@ -19,10 +19,10 @@ class PostController extends Controller {
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function create() {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -49,10 +49,10 @@ class PostController extends Controller {
      * Show the form for editing the specified resource.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function edit($id) {
-        //
+        return view('posts.edit');
     }
 
     /**
